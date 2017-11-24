@@ -6,6 +6,13 @@
 
 using namespace std;
 
+/*
+Compares two integers lexicographically from least to greatest. 
+
+First the input integers are reversed. Next reversed integers are traversed from right to left using mod 10 and divide 10 operations. The operator returns as soon as a digit is found that is not the same.
+
+If all digits compared in the loop are the same, then the lengths of the input integers are compared and the operator returns the longer of the two input integers as being greater.
+*/
 struct lex_comparator
 {
   __host__ __device__
