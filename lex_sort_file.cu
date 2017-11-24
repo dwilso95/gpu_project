@@ -6,14 +6,13 @@
 
 using namespace std;
 
- 
 struct lex_comparator
 {
   __host__ __device__
   bool operator()(int x, int y)
   {
     unsigned numOfDigits;
-    
+  
     if (x > y) {
      numOfDigits = log10f(x) + 1;
     }
@@ -22,24 +21,50 @@ struct lex_comparator
      numOfDigits = log10f(y) + 1;
     }
  
+    int rX = 0, rY = 0, remainderX, remainderY;
  
-    for(int i=0; i < numOfDigits; i++, x/=10, y/10)
+    while(x != 0)
+    {
+        remainderX = x%10;
+        rX = rX*10 + remainderX;
+        x /= 10;
+    }
+ 
+     while(y != 0)
+    {
+        remainderY = y%10;
+        rY = rY*10 + remainderY;
+        y /= 10;
+    }
+ 
+
+    for(int i=0; i < numOfDigits; i++, rX/=10, rY/=10)
     { 
-      if(x % 10 == y % 10)
+      if(rX % 10 == rY % 10)
       {
-        // do nothing
+      // do nothing
       }
-      else if(x % 10 > y % 10)
+      else if(rX % 10 > rY % 10)
       {
         return false;
       }
-	  else
-	  {
+      else
+      {
         return true;
-      }                    
+      }  
     }
-
-    return false;
+ 
+ 
+   int numOfDigitsX = log10f(x) + 1;
+   int numOfDigitsY = log10f(y) + 1;
+ 
+ 
+   if(numOfDigitsY < numOfDigitsX) {
+      return true;
+   } else {
+     return false;
+   }
+ 
   }
 };
  
@@ -47,10 +72,15 @@ struct lex_comparator
 /*
 Sorts the file, line by line lexicographically.
 */
-int main() {
+int main(int argc, char* argv[]) 
+{
 
-  ifstream ifile("col1.txt");
-  int num = 3;
+  cout << "Running " << argv[0] << '\n';
+  cout << "Input file: " << argv[1] << '\n';
+  cout << "Number of values: " << argv[2] << '\n';
+ 
+  ifstream ifile(argv[1]);
+  int num = std::atoi(argv[2]);
   
   // create host vector of size num
   thrust::host_vector<int> H(num);

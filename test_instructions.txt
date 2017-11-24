@@ -1,0 +1,6 @@
+## Test Instructions
+
+1. Read CSV into files containing each column
+   - g++ csv_to_columns.cpp -std=c++0x -o csv_to_columns && ./csv_to_columns ${input.file.csv} 3
+2. Sort each column file
+   - nvcc lex_sort_file.cu -o lex_sort_file && ./lex_sort_file ${column.file} ${number.of.rows}
