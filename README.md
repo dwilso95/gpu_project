@@ -14,11 +14,11 @@ This project will focus on converting a known CSV file into an RFile of a specif
 2. Define an Accumulo schema
 3. Generate data
 4. Generate RFile
-  - For each column in database
-   - Normalize/transform data if necessary
-   - Generate key-value pairs
-  - Sort all keys
-  - Write sorted keys in RFile format
+   - For each column in database
+     - Normalize/transform data if necessary
+     - Generate key-value pairs
+   - Sort all keys
+   - Write sorted keys in RFile format
 
 ### References
 [1] - Accumulo - https://accumulo.apache.org/  
