@@ -20,6 +20,9 @@ This project will focus on converting a known CSV file into an RFile of a specif
    - Sort all key-value pairs
    - Write sorted key-value in RFile format
 
+## Execution:
+See test instructions [readme](https://github.com/dwilso95/gpu_project/blob/master/test_instructions.md).
+
 ### References
 [1] - Accumulo - https://accumulo.apache.org/  
 [2] - ISAM - https://en.wikipedia.org/wiki/ISAM  
